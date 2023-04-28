@@ -152,33 +152,3 @@ host_verified_chart = alt.Chart(hosts_data).mark_bar().encode(
 ).properties(width=600, height=400)
 
 st.altair_chart(host_verified_chart)
-
-from pycaret.regression import *
-
-st.subheader("Price prediction for the house based on the properties: ")
-# load model
-@st.cache_data 
-def predict_cache(test_data):
-    rf_saved = load_model('rf_model')
-    predictions = predict_model(rf_saved, data = test_data)
-    return predictions['prediction_label']
-
-# Inputs
-column1, column2 = st.columns(2)
-room_type = column1.selectbox('Type of room', ['Entire home/apt', 'Private room', 'Shared room'])
-accommodates = column1.slider('Number of accommodates', min(df['accommodates']), max(df['accommodates']), 5.0 , step=1.0)
-bathrooms = column1.slider('Number of bathrooms', min(df['bathrooms']), max(df['bathrooms']), 2.0 , step=0.5)
-city = column1.selectbox('City', ['Boston', 'Chicago', 'DC', 'LA', 'NYC', 'SF'])
-bedrooms = column2.slider('Number of bedrooms', min(df['bedrooms']), max(df['bedrooms']), 2.0 , step=1.0)
-beds = column2.slider('Number of beds', min(df['beds']), max(df['beds']), 2.0 , step=1.0)
-
-test_data =df.head(3)
-test_data['room_type'] = room_type
-test_data['accommodates'] = accommodates
-test_data['bathrooms'] = bathrooms
-test_data['city'] = city
-test_data['bedrooms'] = bedrooms
-test_data['beds'] = beds
-
-# show prediction
-st.write('Price = $%0.2f'%predict_cache(test_data)[0])
