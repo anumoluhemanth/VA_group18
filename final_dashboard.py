@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import altair as alt
 import plotly.express as px
+from pycaret.regression import *
 
 # setting page configurations for the dashboard
 st.set_page_config(
@@ -153,8 +154,6 @@ host_verified_chart = alt.Chart(hosts_data).mark_bar().encode(
 
 st.altair_chart(host_verified_chart)
 
-from pycaret.regression import *
-
 st.subheader("Price prediction for the house based on the properties: ")
 # load model
 @st.cache_data 
@@ -184,9 +183,5 @@ test_data['neighbourhood'] = neighbourhood
 test_data['property_type'] = property_type
 test_data['host_response_rate'] = host_response_rate
 
-# load model
-rf_saved = load_model('rf_model')
-
 # show prediction
-predictions = predict_model(rf_saved, data = test_data)
-st.write('Price = $%0.2f'%predictions['prediction_label'][0])
+st.write('Price = $%0.2f'%predict_cache[0])
