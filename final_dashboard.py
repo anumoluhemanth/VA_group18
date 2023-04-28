@@ -34,7 +34,7 @@ bedrooms = st.sidebar.slider('Select number of bedrooms', min(df['bedrooms']), m
 
 beds = st.sidebar.slider('Select number of beds', min(df['beds']), max(df['beds']), (0.0, 18.0), step=1.0)
 
-reviews = st.sidebar.slider('Select number of reviews', min(df['number_of_reviews']), max(df['number_of_reviews']), (0, 700), step=1.0)
+reviews = st.sidebar.slider('Select number of reviews', min(df['number_of_reviews']), max(df['number_of_reviews']), (0.0, 700.0), step=1.0)
 
 # filtering the data based on the selectors
 filtered_df = df[(df['room_type'] == roomtype_option) & (df['price'] >= price_range[0]) & (df['price'] <= price_range[1]) & (df['number_of_reviews'] >= reviews[0]) &  (df['number_of_reviews'] <= reviews[1]) 
@@ -166,7 +166,7 @@ def predict_cache(test_data):
 # Inputs
 column1, column2 = st.columns(2)
 room_type = column1.selectbox('Type of room', ['Entire home/apt', 'Private room', 'Shared room'])
-accommodates = column1.slider('Number of accommodates', min(df['accommodates']), max(df['accommodates']), 5 , step=1)
+accommodates = column1.slider('Number of accommodates', min(df['accommodates']), max(df['accommodates']), 5.0 , step=1.0)
 bathrooms = column1.slider('Number of bathrooms', min(df['bathrooms']), max(df['bathrooms']), 2.0 , step=0.5)
 city = column1.selectbox('City', ['Boston', 'Chicago', 'DC', 'LA', 'NYC', 'SF'])
 bedrooms = column2.slider('Number of bedrooms', min(df['bedrooms']), max(df['bedrooms']), 2.0 , step=1.0)
