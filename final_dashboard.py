@@ -34,7 +34,7 @@ bedrooms = st.sidebar.slider('Select number of bedrooms', min(df['bedrooms']), m
 
 beds = st.sidebar.slider('Select number of beds', min(df['beds']), max(df['beds']), (0.0, 18.0), step=1.0)
 
-reviews = st.sidebar.slider('Select number of reviews', min(df['number_of_reviews']), max(df['number_of_reviews']), (0, 700), step=1)
+reviews = st.sidebar.slider('Select number of reviews', min(df['number_of_reviews']), max(df['number_of_reviews']), (0, 700), step=1.0)
 
 # filtering the data based on the selectors
 filtered_df = df[(df['room_type'] == roomtype_option) & (df['price'] >= price_range[0]) & (df['price'] <= price_range[1]) & (df['number_of_reviews'] >= reviews[0]) &  (df['number_of_reviews'] <= reviews[1]) 
