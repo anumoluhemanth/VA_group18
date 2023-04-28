@@ -184,5 +184,9 @@ test_data['neighbourhood'] = neighbourhood
 test_data['property_type'] = property_type
 test_data['host_response_rate'] = host_response_rate
 
+# load model
+rf_saved = load_model('rf_model')
+
 # show prediction
-st.write('Price = $%0.2f'%predict_cache(test_data)[0])
+predictions = predict_model(rf_saved, data = test_data)
+st.write('Price = $%0.2f'%predictions['prediction_label'][0])
