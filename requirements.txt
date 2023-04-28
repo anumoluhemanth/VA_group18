@@ -1,3 +1,7 @@
 plotly
-pycaret-ts-alpha
+pycaret
 scikit-learn
+streamlit
+numpy
+pandas
+altair
